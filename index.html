@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles.css" />
+  <title>Adivina el número</title>
+</head>
+
+<div class="container">
+  <h1>Adivina el número secreto</h1>
+  <p>Introduce un número entre 1 y 100</p>
+  <input type="number" id="inputNumero" placeholder="Introduce tu número" min="1" max="100" />
+  <button id="comprobar" onclick="adivinar()">Comprobar</button>
+  <p id="intentos">Intentos: 0</p>
+  <p id="mensaje"></p>
+</div>
+
+<body>
+  <script>
+    //Enunciado: Juego de Adivinanza de un Número en JS, ALBA M
+    let numeroSecreto = Math.floor(Math.random() * 100) + 1;
+    let intentos = 0;
+
+    function adivinar() {
+      const input = parseInt(document.getElementById("inputNumero").value);
+      const mensaje = document.getElementById("mensaje");
+      const intentosDisplay = document.getElementById("intentos");
+      mensaje.textContent = "Introduce un número válido entre 1 y 100.";
+
+      intentos++;
+      intentosDisplay.textContent = `Intentos: ${intentos}`;
+
+      if (input === numeroSecreto) {
+        mensaje.textContent= `¡Felicidades! Adivinaste el número en ${intentos} intentos.`;
+        // con color de fondo verde y letras verdes, en el caso que coincida el numero introducido con el número secreto ramdon
+        mensaje.style.backgroundColor = '#d4edda'; 
+        mensaje.style.color = '#28a745';
+        mensaje.style.display = "block";
+        return;
+      } else if (input > numeroSecreto) {
+        mensaje.textContent = 'El número es demasiado alto.';
+        mensaje.style.backgroundColor = '#ffdddd'; // Rojo 
+        mensaje.style.color = '#d9534f';
+        mensaje.style.display = "block";
+      } else if (input < numeroSecreto) {
+        mensaje.textContent = 'El número es demasiado bajo.';
+        mensaje.style.backgroundColor = '#fff3cd'; // Amarillo
+        mensaje.style.color = '#856404';
+        mensaje.style.display = "block";
+
+      }
+    }
+  </script>
+
+</body>
+
+</html>
+
